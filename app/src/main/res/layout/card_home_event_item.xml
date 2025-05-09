@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvEventDateHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/hero_background_gradient"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Sep 20" />
+
+        <TextView
+            android:id="@+id/tvEventTitleHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="#1F2937"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEventDateHeader"
+            tools:text="Innovation Workshop" />
+
+        <ImageView
+            android:id="@+id/ivLocationIconHome"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/tvEventTitleHome"
+            app:layout_constraintTop_toBottomOf="@id/tvEventTitleHome"
+            app:tint="#6B7280"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/tvEventLocationHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="#6B7280"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivLocationIconHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivLocationIconHome"
+            app:layout_constraintTop_toTopOf="@id/ivLocationIconHome"
+            tools:text="Main Campus" />
+
+        <ImageView
+            android:id="@+id/ivTimeIconHome"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintStart_toStartOf="@id/ivLocationIconHome"
+            app:layout_constraintTop_toBottomOf="@id/ivLocationIconHome"
+            app:tint="#6B7280"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/tvEventTimeHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="#6B7280"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivTimeIconHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivTimeIconHome"
+            app:layout_constraintTop_toTopOf="@id/ivTimeIconHome"
+            tools:text="10:00 AM - 4:00 PM" />
+
+        <TextView
+            android:id="@+id/btnEventRegisterHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Register Now"
+            android:textColor="#5AA6A2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ivTimeIconHome"
+            app:layout_constraintTop_toBottomOf="@id/ivTimeIconHome" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
