@@ -4,12 +4,11 @@
 
     <style name="Theme.TMTO" parent="Base.Theme.TMTO">
         <item name="colorPrimary">@color/black</item>
-
         <item name="colorPrimaryVariant">@color/black</item>
 
         <item name="colorOnPrimary">@color/white</item>
 
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 </resources>
