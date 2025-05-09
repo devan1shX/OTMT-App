@@ -2,14 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="280dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="4dp"
+    android:layout_width="300dp"  android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"     android:layout_marginEnd="4dp"     android:layout_marginTop="8dp"
     android:layout_marginBottom="16dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +20,7 @@
             android:background="@drawable/hero_background_gradient"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,22 +38,23 @@
             android:textColor="#1F2937"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEventDateHeader"
-            tools:text="Innovation Workshop" />
+            tools:text="Innovation Workshop: Exploring the Future of Technology and Design Thinking"/>
 
         <ImageView
             android:id="@+id/ivLocationIconHome"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="@id/tvEventTitleHome"
             app:layout_constraintTop_toBottomOf="@id/tvEventTitleHome"
             app:tint="#6B7280"
             tools:ignore="ContentDescription" />
-
 
         <TextView
             android:id="@+id/tvEventLocationHome"
@@ -63,25 +62,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:textColor="#6B7280"
+            android:textColor="#4B5563"
             android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="@id/ivLocationIconHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivLocationIconHome"
             app:layout_constraintTop_toTopOf="@id/ivLocationIconHome"
-            tools:text="Main Campus" />
+            tools:text="Main Campus Auditorium, IIITD, Okhla Industrial Estate, Phase III, Near Govind Puri Metro Station, New Delhi, Delhi 110020" />
 
         <ImageView
             android:id="@+id/ivTimeIconHome"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_clock"
             app:layout_constraintStart_toStartOf="@id/ivLocationIconHome"
-            app:layout_constraintTop_toBottomOf="@id/ivLocationIconHome"
+            app:layout_constraintTop_toBottomOf="@id/tvEventLocationHome"
             app:tint="#6B7280"
             tools:ignore="ContentDescription" />
-
 
         <TextView
             android:id="@+id/tvEventTimeHome"
@@ -89,32 +89,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:textColor="#6B7280"
+            android:textColor="#4B5563"
             android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="@id/ivTimeIconHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivTimeIconHome"
             app:layout_constraintTop_toTopOf="@id/ivTimeIconHome"
-            tools:text="10:00 AM - 4:00 PM" />
+            tools:text="10:00 AM - 04:00 PM (Including lunch and networking breaks)" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEventRegisterHome"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
             android:text="Register Now"
-            android:textColor="#5AA6A2"
+            android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:background="?attr/selectableItemBackground"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="4dp"
+            app:backgroundTint="#009688"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/ivTimeIconHome"
-            app:layout_constraintTop_toBottomOf="@id/ivTimeIconHome" />
+            app:layout_constraintTop_toBottomOf="@id/tvEventTimeHome"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

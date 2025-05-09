@@ -5,39 +5,87 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ac.iiitd.otmt.R
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import ac.iiitd.otmt.fragment_event.adapter.EventAdapter
+import ac.iiitd.otmt.fragment_event.fragment_upcoming.UiState
+import ac.iiitd.otmt.fragment_event.fragment_upcoming.UpcomingEventsViewModel
 
 class EventFragment : Fragment() {
 
-    private lateinit var eventPagerAdapter: EventPagerAdapter
-    private lateinit var viewPager: ViewPager2
-    private lateinit var tabLayout: TabLayout
+    private lateinit var rvEvents: RecyclerView
+    private lateinit var progressBarEvents: ProgressBar
+    private lateinit var tvErrorMessageEvents: TextView
+
+    private val viewModel: UpcomingEventsViewModel by viewModels()
+    private lateinit var eventAdapter: EventAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_event, container, false)
+        val view = inflater.inflate(R.layout.fragment_event, container, false)
+        rvEvents = view.findViewById(R.id.rv_events)
+        progressBarEvents = view.findViewById(R.id.progress_bar_events)
+        tvErrorMessageEvents = view.findViewById(R.id.tv_error_message_events)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewPager = view.findViewById(R.id.view_pager)
-        tabLayout = view.findViewById(R.id.tab_layout)
+        setupRecyclerView()
+        observeViewModel()
 
-        eventPagerAdapter = EventPagerAdapter(this)
-        viewPager.adapter = eventPagerAdapter
+        viewModel.loadUpcomingEvents()
+    }
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Upcoming"
-                1 -> "Past Highlights"
-                else -> null
+    private fun setupRecyclerView() {
+        eventAdapter = EventAdapter(emptyList())
+        rvEvents.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = eventAdapter
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            progressBarEvents.isVisible = state is UiState.Loading
+            rvEvents.isVisible = state is UiState.Success && state.events.isNotEmpty()
+            tvErrorMessageEvents.isVisible = state is UiState.Error || (state is UiState.Success && state.events.isEmpty())
+
+            when (state) {
+                is UiState.Loading -> {
+                    tvErrorMessageEvents.visibility = View.GONE
+                }
+                is UiState.Success -> {
+                    if (state.events.isEmpty()) {
+                        tvErrorMessageEvents.text = "No upcoming active events found."
+                        eventAdapter.updateData(emptyList())
+                    } else {
+                        eventAdapter.updateData(state.events)
+                    }
+                }
+                is UiState.Error -> {
+                    tvErrorMessageEvents.text = state.message
+                    eventAdapter.updateData(emptyList())
+                }
+                is UiState.Idle -> {
+                    progressBarEvents.visibility = View.GONE
+                    rvEvents.visibility = View.GONE
+                    tvErrorMessageEvents.visibility = View.GONE
+                }
             }
-        }.attach()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rvEvents.adapter = null
     }
 }

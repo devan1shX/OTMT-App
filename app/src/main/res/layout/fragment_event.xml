@@ -32,7 +32,7 @@
                 android:layout_marginTop="24dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:text="Events &amp; Workshops"
+                android:text="Upcoming Events &amp; Workshops"
                 android:textColor="@color/collaborate_primary_teal"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
                 android:lineSpacingExtra="4dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:text="Explore our diverse range of events and workshops designed to foster learning, networking, and innovation. Get involved and stay updated."
+                android:text="Explore our upcoming events and workshops designed to foster learning, networking, and innovation. Get involved and stay updated."
                 android:textColor="@color/collaborate_text_secondary"
                 android:textSize="16sp" />
 
@@ -69,55 +69,40 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"  android:layout_weight="1"   />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_tab_layout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_events"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"  android:layout_marginEnd="20dp"    android:layout_marginTop="8dp"     android:layout_marginBottom="16dp" app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:strokeWidth="0dp"
-            > <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            android:visibility="gone"
+            tools:listitem="@layout/card_event_item" />
+        <ProgressBar
+            android:id="@+id/progress_bar_events"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:tabBackground="@android:color/transparent"
-            app:tabIndicatorColor="@color/collaborate_primary_teal"
-            app:tabIndicatorHeight="3dp"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorGravity="bottom"
-            app:tabSelectedTextColor="@color/collaborate_primary_teal"
-            app:tabTextColor="@color/collaborate_text_secondary"
-            app:tabPaddingStart="16dp"
-            app:tabPaddingEnd="16dp"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget">
+            android:layout_centerInParent="true"
+            android:layout_marginTop="32dp"
+            android:visibility="gone" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upcoming" />
+        <TextView
+            android:id="@+id/tv_error_message_events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="No events found."
+            android:textColor="@color/collaborate_text_secondary"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Past" />
-
-        </com.google.android.material.tabs.TabLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
